@@ -7,27 +7,27 @@ import socket
 import struct
 import sys, getopt
 
-UDP_IP = "127.0.0.1"
-UDP_PORT = 12345
-
-def printinfo():
+def printinfo(ip, port):
 	print '===================================================================='
 	print 'send_doubles.py -i <remote ip> -p <remote port>'
-	print 'If not defined, IP address is ', UDP_IP, ' and the port is ', UDP_PORT
+	print 'If not defined, IP address is ', ip, ' and the port is ', port
 	print 'Example: send_doubles.py -i "127.0.0.1" -p 12345'
 	print '===================================================================='
 	return
 
 def main(argv):
+	UDP_IP = "127.0.0.1"
+	UDP_PORT = 12345
+
 	try:
 		opts, args = getopt.getopt(argv,"hi:p:",["ip=","port="])
 	except getopt.GetoptError:
-		printinfo()
+		printinfo(UDP_IP, UDP_PORT)
 		sys.exit(2)
 
 	for opt, arg in opts:
 		if opt == '-h':
-			printinfo()
+			printinfo(UDP_IP, UDP_PORT)
 			sys.exit()
 		elif opt in ("-i", "--ip"):
 			UDP_IP = arg
